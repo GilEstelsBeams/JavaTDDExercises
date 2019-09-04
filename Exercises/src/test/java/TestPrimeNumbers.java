@@ -8,12 +8,31 @@ public class TestPrimeNumbers {
     @Test
     public void testIsPrimeNumber() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals(true,pN.isPrime(3));
+        assertEquals(true , pN.isPrime(3));
     }
 
     @Test
     public void testIsNotPrimeNumber() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals(false,pN.isPrime(4));
+        assertEquals(false , pN.isPrime(4));
+    }
+
+    @Test
+    public void testNegativeIsNotPrimeNumber() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrime(-3));
+    }
+
+    @Test
+    public void testFiveIsPrimeNumber() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(true , pN.isPrime(5));
+    }
+
+
+    @Test
+    public void testSixIsNotPrimeNumber() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrime(6));
     }
 }
