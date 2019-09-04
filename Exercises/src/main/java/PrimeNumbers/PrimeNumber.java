@@ -15,17 +15,20 @@ public class PrimeNumber {
                 ArrayList<Integer> primes = new ArrayList<Integer>();
                 primes.add(2);
 
+
                 for (int i = 3; i <= n; i++) {
+
+                    boolean maybePrime =true;
 
                         for (int j = 0; j < primes.size(); j++) {
                             int remainder = i % primes.get(j);
-                            if (remainder == 0){break;}
-                            else {
-                                primes.add(i);
-                            }
+                            if (remainder == 0){maybePrime=false;
+                            break;}
                         }
-                    }
 
+                    if(maybePrime)primes.add(i);
+                    }
+                System.out.println(primes);
                     return primes.contains(n);
                 }
             }
