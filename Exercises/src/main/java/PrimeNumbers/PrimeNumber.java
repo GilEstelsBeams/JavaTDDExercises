@@ -5,12 +5,10 @@ import java.util.ArrayList;
 public class PrimeNumber {
 
     public boolean isPrime(int n) {
-        if (n < 0) return false;
+        if (n < 2) return false;
         else {
-            if (n == 0) return true;
-            else if (n == 1) return true;
-            else if (n == 2) return true;
-//            else if (n == 3) return true;
+            if (n == 2) return true;
+
             else {
                 ArrayList<Integer> primes = new ArrayList<Integer>();
                 primes.add(2);
