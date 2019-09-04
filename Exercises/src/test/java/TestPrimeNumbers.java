@@ -35,4 +35,16 @@ public class TestPrimeNumbers {
         PrimeNumber pN=new PrimeNumber();
         assertEquals(false , pN.isPrime(6));
     }
+
+    @Test
+    public void testBigNumberNotPrime() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrime(77));
+    }
+
+    @Test
+    public void testBigNumberPrime() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(true , pN.isPrime(53));
+    }
 }
