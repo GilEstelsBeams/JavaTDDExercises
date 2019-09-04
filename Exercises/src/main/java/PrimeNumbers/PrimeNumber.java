@@ -1,6 +1,7 @@
 package PrimeNumbers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrimeNumber {
 
@@ -26,10 +27,14 @@ public class PrimeNumber {
 
                     if(maybePrime)primes.add(i);
                     }
-                System.out.println(primes);
                     return primes.contains(n);
                 }
             }
         }
+
+    public List<Integer> primes(int n){
+        List<Integer> listPrimes= new ArrayList<Integer>();
+        return listPrimes;
+    }
     }
 

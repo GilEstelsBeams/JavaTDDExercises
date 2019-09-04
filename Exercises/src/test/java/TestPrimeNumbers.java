@@ -1,5 +1,9 @@
 import PrimeNumbers.PrimeNumber;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestPrimeNumbers {
@@ -47,4 +51,12 @@ public class TestPrimeNumbers {
         PrimeNumber pN=new PrimeNumber();
         assertEquals(true , pN.isPrime(53));
     }
+
+    @Test
+    public void testListNoPrime() {
+        PrimeNumber pN=new PrimeNumber();
+        List<Integer> list= new ArrayList<Integer>();
+        assertEquals( list, pN.primes(0));
+    }
+
 }
