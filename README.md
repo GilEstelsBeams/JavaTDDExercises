@@ -20,5 +20,10 @@ At what point can you stop checking if your candidate prime is divisible by othe
 
 Write another function, with signature public List<Integer> primes(int n) which returns the first n prime numbers.
 Given your list of candidate primes in the primes function, divide it into four lists of equal length and use aThreadPoolExecutor of size 4 to execute isPrime in parallel.  How much does this speed up your primes method?  How much would you expect it to speed up your primes method?
-Memoize the isPrime function such that it caches known previous Prime values.  If you run your unit tests multiple times, do you get the same value?
+Memorize the isPrime function such that it caches known previous Prime values.  If you run your unit tests multiple times, do you get the same value?
 If you don’t get the same value, use the synchronized keyword in the appropriate place to ensure that you do
+
+ANSWER:
+
+Here it slows it down with my code, since I could use primes2() directly. It only makes the necessary checks, primes() is quite inefficient compared to primes2(). Here I have primes2 which is 1000 faster than primes.
+Yet the way primes2 is built does not allow for a threadpoolexecutor.

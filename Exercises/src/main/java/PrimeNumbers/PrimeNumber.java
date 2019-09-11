@@ -10,9 +10,21 @@ public class PrimeNumber {
 
     public static void main(String[] args) {
         PrimeNumber pN=new PrimeNumber();
-        System.out.println(pN.isPrime(112333));
-        System.out.println(pN.primes2(100));
+        long startTime1 = System.nanoTime();
         System.out.println(pN.primes(100));
+        long endTime1 = System.nanoTime();
+        long duration1 = (endTime1 - startTime1);
+        System.out.println(duration1);
+
+        long startTime2 = System.nanoTime();
+        System.out.println(pN.primes2(100));
+        long endTime2 = System.nanoTime();
+        long duration2 = (endTime2 - startTime2);
+        System.out.println(duration2);
+
+        System.out.println(pN.isPrime(112333));
+
+
     }
 
     // CHECKS IF INTEGER IS PRIME NUMBER
