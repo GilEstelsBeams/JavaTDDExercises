@@ -25,8 +25,6 @@ public class PrimeNumber {
     public List<Integer> primes(int n) {
         List<Integer> listPrimes = new ArrayList<Integer>();
         if (n > 0) {
-            Integer parts = n / 4;
-            if (!(parts == 0)) {
                 ExecutorService executor = Executors.newFixedThreadPool(4);
 
                 for(int i=1; i<=n;i++){
@@ -41,27 +39,11 @@ public class PrimeNumber {
                        }
                 }
                 executor.shutdown();
-
-           } else listPrimes = partPrimes(1, n);
-
-            }
-
+           }
 
         return listPrimes;
     }
 
-    // METHOD TO ITERATE BETWEEN TWO BOUNDARIES
-
-    public List<Integer> partPrimes(int start, int end){
-        PrimeNumber pN=new PrimeNumber();
-        List<Integer> listPrimes= new ArrayList<Integer>();
-        for(int i=start; i<=end; i++){
-            if(pN.isPrime(i)){
-                listPrimes.add(i);
-            }
-        }
-        return listPrimes;
-    }
         //METHOD USED IN ISPRIME TO DETERMINE LIST
 
     public List<Integer> primes2(int n){
