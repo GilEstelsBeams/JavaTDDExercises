@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeNumber {
@@ -127,6 +128,11 @@ public class PrimeNumber {
             });
         }
         executor.shutdown();
+        try {
+            executor.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ArrayList<Integer> listPrimesL = new ArrayList<>(listPrimes);
         Collections.sort(listPrimesL);
         return listPrimesL;
