@@ -150,4 +150,48 @@ public class TestPrimeNumbers {
         assertEquals( pN.primes2(2742), pN.primesNoThreadPool(400));
     }
 
+    @Test
+    public void testIsPrimeNumberC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(true , pN.isPrimeCached(3));
+    }
+
+    @Test
+    public void testIsNotPrimeNumberC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrimeCached(4));
+    }
+
+    @Test
+    public void testNegativeIsNotPrimeNumberC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrimeCached(-3));
+    }
+
+    @Test
+    public void testFiveIsPrimeNumberC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(true , pN.isPrimeCached(5));
+    }
+
+
+    @Test
+    public void testSixIsNotPrimeNumberC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrimeCached(6));
+    }
+
+    @Test
+    public void testBigNumberNotPrimeC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(false , pN.isPrimeCached(77));
+    }
+
+    @Test
+    public void testBigNumberPrimeC() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals(true , pN.isPrimeCached(53));
+    }
+
+
 }

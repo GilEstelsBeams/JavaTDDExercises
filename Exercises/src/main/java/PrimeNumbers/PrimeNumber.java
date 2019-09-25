@@ -58,6 +58,14 @@ public class PrimeNumber {
     }
 
 
+    // ISPRIME METHOD USING CACHE
+
+    public boolean isPrimeCached(int n) {
+
+        return false;
+    }
+
+
     // METHOD TO EXPERIMENT WITH A STATIC THREADPOOLEXECUTOR
 
     public List<Integer> primesStatic(int n) {
@@ -138,7 +146,8 @@ public class PrimeNumber {
         return listPrimesL;
     }
 
-    //METHOD USED IN EXECUTOR
+
+    // METHOD USED IN EXECUTOR
 
 public List<Integer> listBoundedPrimes(int start, int finish){
        List<Integer> listPrimes = new ArrayList<Integer>();
@@ -149,7 +158,7 @@ public List<Integer> listBoundedPrimes(int start, int finish){
 }
 
 
-        //METHOD USED IN ISPRIME TO DETERMINE LIST
+   // METHOD USED IN ISPRIME TO DETERMINE LIST
 
     public List<Integer> primes2(int n){
         List<Integer> listPrimes= new ArrayList<Integer>();
