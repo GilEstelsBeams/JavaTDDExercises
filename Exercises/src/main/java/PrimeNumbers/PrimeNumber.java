@@ -97,23 +97,6 @@ public class PrimeNumber {
 
         } while(keepGoing);
 
-
-        // SIMPLE CODE WITHOUT THE FOUR LISTS
-
-//           for(int i=1; i<=n;i++){
-//                    final int j=i;
-//                    Future<Boolean> answer= executor.submit (()->{
-//                        return isPrime(j);
-//                    });
-//
-//                   try{ if(answer.get()){ listPrimes.add(i);}
-//                   }
-//                   catch(Exception e){
-//                       }
-//                }
-//                executor.shutdown();
-//           }
-
         return listPrimes;
     }
 
