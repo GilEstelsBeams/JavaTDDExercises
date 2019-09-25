@@ -10,19 +10,21 @@ public class PrimeNumber {
 
     public static void main(String[] args) {
         PrimeNumber pN=new PrimeNumber();
-        long startTime1 = System.nanoTime();
-        System.out.println(pN.primes(100));
-        long endTime1 = System.nanoTime();
-        long duration1 = (endTime1 - startTime1);
-        System.out.println(duration1);
+        System.out.println(pN.primesStatic(6));
 
-        long startTime2 = System.nanoTime();
-        System.out.println(pN.primes2(100));
-        long endTime2 = System.nanoTime();
-        long duration2 = (endTime2 - startTime2);
-        System.out.println(duration2);
-
-        System.out.println(pN.isPrime(112333));
+//        long startTime1 = System.nanoTime();
+//        System.out.println(pN.primesStatic(100));
+//        long endTime1 = System.nanoTime();
+//        long duration1 = (endTime1 - startTime1);
+//        System.out.println(duration1);
+//
+//        long startTime2 = System.nanoTime();
+//        System.out.println(pN.primes2(100));
+//        long endTime2 = System.nanoTime();
+//        long duration2 = (endTime2 - startTime2);
+//        System.out.println(duration2);
+//
+//        System.out.println(pN.isPrime(112333));
 
 
     }
@@ -35,23 +37,28 @@ public class PrimeNumber {
 
         // METHOD TO EXPERIMENT WITH A THREADPOOLEXECUTOR EVEN THOUGH MIGHT BE LESS EFFICIENT THAN SECOND ONE
 
-    public List<Integer> primes(int n) {
+    public List<Integer> primesStatic(int n) {
         List<Integer> listPrimes = new ArrayList<Integer>();
-        if (n > 0) {
+        boolean keepGoing=true;
+        int start=1;
+        int count=n;
+        do{if (n > 0) {
             if(n>3) {
                 ExecutorService executor = Executors.newFixedThreadPool(4);
                  int parts = n / 4;
+                 int startL=start;
+                 int nL=n;
                 Future<List<Integer>> answer1 = executor.submit(() -> {
-                    return listBoundedPrimes(1, parts);
+                    return listBoundedPrimes(startL, startL+ parts-1);
                 });
                 Future<List<Integer>> answer2 = executor.submit(() -> {
-                    return listBoundedPrimes(parts + 1, 2 * parts);
+                    return listBoundedPrimes(parts + startL, startL+ 2 * parts -1);
                 });
                 Future<List<Integer>> answer3 = executor.submit(() -> {
-                    return listBoundedPrimes(2 * parts + 1, 3 * parts);
+                    return listBoundedPrimes(2 * parts + startL, 3 * parts +startL -1);
                 });
                 Future<List<Integer>> answer4 = executor.submit(() -> {
-                    return listBoundedPrimes(3 * parts + 1, n);
+                    return listBoundedPrimes(3 * parts + startL, startL+nL -1);
                 });
                     try {
                             listPrimes.addAll(answer1.get());
@@ -64,8 +71,17 @@ public class PrimeNumber {
 
                 executor.shutdown();
             }
-            listPrimes=listBoundedPrimes(1,n);
+            else listPrimes.addAll(listBoundedPrimes(start,start+n-1));
           }
+        int listSize=listPrimes.size();
+        if (listSize>=count) keepGoing=false;
+        else{
+            start=start+n;
+            n=count-listSize;
+        }
+
+        } while(keepGoing);
+
 
         // SIMPLE CODE WITHOUT THE FOUR LISTS
 

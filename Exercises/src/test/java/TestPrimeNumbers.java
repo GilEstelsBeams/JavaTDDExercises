@@ -56,33 +56,33 @@ public class TestPrimeNumbers {
     public void testListNoPrime() {
         PrimeNumber pN=new PrimeNumber();
         List<Integer> list= new ArrayList<Integer>();
-        assertEquals( list, pN.primes(0));
+        assertEquals( list, pN.primesStatic(0));
     }
 
     @Test
     public void testListWorkingNoPrime() {
         PrimeNumber pN=new PrimeNumber();
         List<Integer> list= new ArrayList<Integer>();
-        assertEquals( list, pN.primes(0));
+        assertEquals( list, pN.primesStatic(0));
     }
     @Test
     public void testListReallyWorkingPrime() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals( pN.primes2(9), pN.primes(9));
+        assertEquals( pN.primes2(24), pN.primesStatic(9));
     }    @Test
     public void testListWorkingSmallPrime() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals( pN.primes2(3), pN.primes(3));
+        assertEquals( pN.primes2(6), pN.primesStatic(3));
     }        @Test
     public void testListWorkingNegativePrime() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals( pN.primes2(-8), pN.primes(-8));
+        assertEquals( pN.primes2(-8), pN.primesStatic(-8));
     }
 
     @Test
     public void testListWorkingBigPrime() {
         PrimeNumber pN=new PrimeNumber();
-        assertEquals( pN.primes2(4459), pN.primes(4459));
+        assertEquals( pN.primes2(2742), pN.primesStatic(400));
     }
 
 }
