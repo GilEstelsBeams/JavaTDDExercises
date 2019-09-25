@@ -1,10 +1,10 @@
 package PrimeNumbers;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PrimeNumber {
 
@@ -20,11 +20,18 @@ public class PrimeNumber {
         System.out.println(duration1);
 
         long startTime2 = System.nanoTime();
-        System.out.println(pN.primesNoThreadPool(100));
+        System.out.println(pN.primesDynamic(100));
         long endTime2 = System.nanoTime();
         long duration2 = (endTime2 - startTime2);
-        System.out.println("no threadpool");
+        System.out.println("dynamic");
         System.out.println(duration2);
+
+        long startTime3 = System.nanoTime();
+        System.out.println(pN.primesNoThreadPool(100));
+        long endTime3 = System.nanoTime();
+        long duration3 = (endTime3 - startTime3);
+        System.out.println("no threadpool");
+        System.out.println(duration3);
 
         System.out.println(pN.isPrime(112333));
 
@@ -98,6 +105,31 @@ public class PrimeNumber {
         } while(keepGoing);
 
         return listPrimes;
+    }
+
+
+    //DYNAMIC THREADPOOLEXECUTOR
+
+    public List<Integer> primesDynamic(int n){
+        Set<Integer> listPrimes = new HashSet<>();
+
+        AtomicInteger current = new AtomicInteger();
+        current.set(1);
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+        for(int i=0; i<4; i++){
+            executor.submit(()->{
+                while(listPrimes.size()<n){
+                    int numberToTest = current.incrementAndGet();
+                    if(isPrime(numberToTest)){
+                        listPrimes.add(numberToTest);
+                    }
+                }
+            });
+        }
+        executor.shutdown();
+        ArrayList<Integer> listPrimesL = new ArrayList<>(listPrimes);
+        Collections.sort(listPrimesL);
+        return listPrimesL;
     }
 
     //METHOD USED IN EXECUTOR
