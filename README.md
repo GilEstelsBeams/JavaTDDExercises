@@ -25,4 +25,6 @@ If you don’t get the same value, use the synchronized keyword in the appropria
 
 ANSWER:
 
-Here using the ThreadPool slows things down with my code, by a factor of approximately 4.
+There is a cost associated with the creation of threadpools.
+Thus, for smaller number of primes such as 100, the normal method is quicker.
+Once n gets much bigger the threadpools start being quicker, with the dynamic one always more efficient than the static one.

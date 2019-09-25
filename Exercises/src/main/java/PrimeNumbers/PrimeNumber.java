@@ -14,21 +14,21 @@ public class PrimeNumber {
         System.out.println(pN.primesStatic(6));
 
         long startTime1 = System.nanoTime();
-        System.out.println(pN.primesStatic(100));
+        System.out.println(pN.primesStatic(1000));
         long endTime1 = System.nanoTime();
         long duration1 = (endTime1 - startTime1)/1000000;
         System.out.println("static");
         System.out.println(duration1);
 
         long startTime2 = System.nanoTime();
-        System.out.println(pN.primesDynamic(100));
+        System.out.println(pN.primesDynamic(1000));
         long endTime2 = System.nanoTime();
         long duration2 = (endTime2 - startTime2)/1000000;
         System.out.println("dynamic");
         System.out.println(duration2);
 
         long startTime3 = System.nanoTime();
-        System.out.println(pN.primesNoThreadPool(100));
+        System.out.println(pN.primesNoThreadPool(1000));
         long endTime3 = System.nanoTime();
         long duration3 = (endTime3 - startTime3)/1000000;
         System.out.println("no threadpool");
