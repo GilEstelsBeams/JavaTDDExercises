@@ -6,6 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 
 public class PrimeNumber {
 
@@ -61,7 +62,7 @@ public class PrimeNumber {
     // ISPRIME METHOD USING CACHE
 
     public boolean isPrimeCached(int n) {
-
+        private static final Function<Long, Long> CACHED = Memoizer.memoize(PrimeNumber::uncached);
         return false;
     }
 
