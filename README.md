@@ -25,5 +25,4 @@ If you don’t get the same value, use the synchronized keyword in the appropria
 
 ANSWER:
 
-Here it slows it down with my code, since I could use primes2() directly. It only makes the necessary checks, primes() is quite inefficient compared to primes2(). Here I have primes2 which is 1000 faster than primes.
-Yet the way primes2 is built does not allow for a threadpoolexecutor.
+Here using the ThreadPool slows things down with my code, by a factor of approximately 4.

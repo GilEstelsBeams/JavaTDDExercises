@@ -12,19 +12,21 @@ public class PrimeNumber {
         PrimeNumber pN=new PrimeNumber();
         System.out.println(pN.primesStatic(6));
 
-//        long startTime1 = System.nanoTime();
-//        System.out.println(pN.primesStatic(100));
-//        long endTime1 = System.nanoTime();
-//        long duration1 = (endTime1 - startTime1);
-//        System.out.println(duration1);
-//
-//        long startTime2 = System.nanoTime();
-//        System.out.println(pN.primes2(100));
-//        long endTime2 = System.nanoTime();
-//        long duration2 = (endTime2 - startTime2);
-//        System.out.println(duration2);
-//
-//        System.out.println(pN.isPrime(112333));
+        long startTime1 = System.nanoTime();
+        System.out.println(pN.primesStatic(100));
+        long endTime1 = System.nanoTime();
+        long duration1 = (endTime1 - startTime1);
+        System.out.println("static");
+        System.out.println(duration1);
+
+        long startTime2 = System.nanoTime();
+        System.out.println(pN.primesNoThreadPool(100));
+        long endTime2 = System.nanoTime();
+        long duration2 = (endTime2 - startTime2);
+        System.out.println("no threadpool");
+        System.out.println(duration2);
+
+        System.out.println(pN.isPrime(112333));
 
 
     }
@@ -35,7 +37,20 @@ public class PrimeNumber {
         return primes2(n).contains(n);
         }
 
-        // METHOD TO EXPERIMENT WITH A THREADPOOLEXECUTOR EVEN THOUGH MIGHT BE LESS EFFICIENT THAN SECOND ONE
+        //LIST of N PRIMES WITHOUT THREADPOOL
+
+    public List<Integer> primesNoThreadPool(int n){
+        List<Integer> listPrimes = new ArrayList<Integer>();
+        int i=2;
+        while(listPrimes.size()<n){
+            if(isPrime(i)) listPrimes.add(i);
+            i++;
+        }
+        return listPrimes;
+    }
+
+
+    // METHOD TO EXPERIMENT WITH A STATIC THREADPOOLEXECUTOR
 
     public List<Integer> primesStatic(int n) {
         List<Integer> listPrimes = new ArrayList<Integer>();

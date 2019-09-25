@@ -85,4 +85,37 @@ public class TestPrimeNumbers {
         assertEquals( pN.primes2(2742), pN.primesStatic(400));
     }
 
+    @Test
+    public void testListNoPrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        List<Integer> list= new ArrayList<Integer>();
+        assertEquals( list, pN.primesNoThreadPool(0));
+    }
+
+    @Test
+    public void testListWorkingNoPrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        List<Integer> list= new ArrayList<Integer>();
+        assertEquals( list, pN.primesNoThreadPool(0));
+    }
+    @Test
+    public void testListReallyWorkingPrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals( pN.primes2(24), pN.primesNoThreadPool(9));
+    }    @Test
+    public void testListWorkingSmallPrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals( pN.primes2(6), pN.primesNoThreadPool(3));
+    }        @Test
+    public void testListWorkingNegativePrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals( pN.primes2(-8), pN.primesNoThreadPool(-8));
+    }
+
+    @Test
+    public void testListWorkingBigPrimeS() {
+        PrimeNumber pN=new PrimeNumber();
+        assertEquals( pN.primes2(2742), pN.primesNoThreadPool(400));
+    }
+
 }
