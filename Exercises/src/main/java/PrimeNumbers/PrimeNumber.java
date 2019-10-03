@@ -1,5 +1,6 @@
 package PrimeNumbers;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -7,6 +8,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PrimeNumber {
 
@@ -17,7 +20,7 @@ public class PrimeNumber {
         System.out.println(pN.primesStatic(6));
 
         long startTime1 = System.nanoTime();
-        System.out.println(pN.primesStatic(1000));
+        //System.out.println(pN.primesStatic(1000));
         long endTime1 = System.nanoTime();
         long duration1 = (endTime1 - startTime1)/1000000;
         System.out.println("static");
@@ -26,16 +29,25 @@ public class PrimeNumber {
         long startTime2 = System.nanoTime();
         System.out.println(pN.primesDynamic(1000));
         long endTime2 = System.nanoTime();
-        long duration2 = (endTime2 - startTime2)/1000000;
+        long duration2 = (endTime2 - startTime2);
         System.out.println("dynamic");
         System.out.println(duration2);
 
         long startTime3 = System.nanoTime();
         System.out.println(pN.primesNoThreadPool(1000));
         long endTime3 = System.nanoTime();
-        long duration3 = (endTime3 - startTime3)/1000000;
+        long duration3 = (endTime3 - startTime3);
         System.out.println("no threadpool");
+
+        long startTime4 = System.nanoTime();
+        System.out.println(pN.lambdaPrimes(1000));
+        long endTime4 = System.nanoTime();
+        long duration4 = (endTime4 - startTime4);
+        System.out.println("lambda");
+        System.out.println(duration1);
+        System.out.println(duration2);
         System.out.println(duration3);
+        System.out.println(duration4);
 
         System.out.println(pN.isPrime(112333));
 
@@ -66,7 +78,15 @@ public class PrimeNumber {
         return listPrimes;
     }
 
-
+    public List<Integer> lambdaPrimes(int n) {
+        return IntStream.iterate(1, i -> i + 1)
+//                .parallel()
+                .mapToObj(BigInteger::valueOf)
+                .filter(x -> x.isProbablePrime(14))
+                .limit(n)
+                .map(BigInteger::intValue)
+                .collect(Collectors.toList());
+    }
 
     // METHOD TO EXPERIMENT WITH A STATIC THREADPOOLEXECUTOR, USES CACHED FUNCTION
 
@@ -160,7 +180,8 @@ public List<Integer> listBoundedPrimes(int start, int finish){
 }
 
 
-   // METHOD USED IN ISPRIME TO DETERMINE LIST
+   // METHOD USED IN ISPRIME TO DETERMINE LIST,
+    //TODO: cache function for list of primes + reduce checks to only square root
 
     public static List<Integer> primes2(int n){
         List<Integer> listPrimes= new ArrayList<Integer>();
@@ -170,7 +191,7 @@ public List<Integer> listBoundedPrimes(int start, int finish){
             if (n == 2) return listPrimes;
 
             else {
-                for (int i = 3; i <= n; i++) {
+                for (int i = 3; i <= n; i=i+2) {
 
                     boolean maybePrime =true;
 
