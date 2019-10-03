@@ -48,27 +48,27 @@ public class PrimeNumber {
         return primes2(n).contains(n);
         }
 
-        //LIST of N PRIMES WITHOUT THREADPOOL
-
-    public List<Integer> primesNoThreadPool(int n){
-        List<Integer> listPrimes = new ArrayList<Integer>();
-        int i=2;
-        while(listPrimes.size()<n){
-            if(isPrime(i)) listPrimes.add(i);
-            i++;
-        }
-        return listPrimes;
-    }
-
-
     // ISPRIME METHOD USING CACHE
 
     public boolean isPrimeCached (int n) {
         return CACHED.apply(n);
     }
 
+        //LIST of N PRIMES WITHOUT THREADPOOL
 
-    // METHOD TO EXPERIMENT WITH A STATIC THREADPOOLEXECUTOR
+    public List<Integer> primesNoThreadPool(int n){
+        List<Integer> listPrimes = new ArrayList<Integer>();
+        int i=2;
+        while(listPrimes.size()<n){
+            if(isPrimeCached(i)) listPrimes.add(i);
+            i++;
+        }
+        return listPrimes;
+    }
+
+
+
+    // METHOD TO EXPERIMENT WITH A STATIC THREADPOOLEXECUTOR, USES CACHED FUNCTION
 
     public List<Integer> primesStatic(int n) {
         List<Integer> listPrimes = new ArrayList<Integer>();
@@ -119,7 +119,7 @@ public class PrimeNumber {
     }
 
 
-    //DYNAMIC THREADPOOLEXECUTOR
+    //DYNAMIC THREADPOOLEXECUTOR, USING CACHED FUNCTION
 
     public List<Integer> primesDynamic(int n){
         Set<Integer> listPrimes = new HashSet<>();
@@ -131,7 +131,7 @@ public class PrimeNumber {
             executor.submit(()->{
                 while(listPrimes.size()<n){
                     int numberToTest = current.incrementAndGet();
-                    if(isPrime(numberToTest)){
+                    if(isPrimeCached(numberToTest)){
                         listPrimes.add(numberToTest);
                     }
                 }
@@ -149,12 +149,12 @@ public class PrimeNumber {
     }
 
 
-    // METHOD USED IN EXECUTOR
+    // METHOD USED IN EXECUTOR, NOW USES CACHED FUNCTION
 
 public List<Integer> listBoundedPrimes(int start, int finish){
        List<Integer> listPrimes = new ArrayList<Integer>();
         for(int i=start; i<=finish; i++){
-            if(isPrime(i)) listPrimes.add(i);
+            if(isPrimeCached(i)) listPrimes.add(i);
         }
         return listPrimes;
 }
