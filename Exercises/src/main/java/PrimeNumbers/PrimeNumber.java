@@ -10,6 +10,8 @@ import java.util.function.Function;
 
 public class PrimeNumber {
 
+    private static final Function<Integer, Boolean> CACHED = Memoizer.memoize(PrimeNumber::isPrime);
+
     public static void main(String[] args) {
         PrimeNumber pN=new PrimeNumber();
         System.out.println(pN.primesStatic(6));
@@ -42,7 +44,7 @@ public class PrimeNumber {
 
     // CHECKS IF INTEGER IS PRIME NUMBER
 
-    public boolean isPrime(int n) {
+    public static boolean isPrime(int n) {
         return primes2(n).contains(n);
         }
 
@@ -61,9 +63,8 @@ public class PrimeNumber {
 
     // ISPRIME METHOD USING CACHE
 
-    public boolean isPrimeCached(int n) {
-        private static final Function<Long, Long> CACHED = Memoizer.memoize(PrimeNumber::uncached);
-        return false;
+    public boolean isPrimeCached (int n) {
+        return CACHED.apply(n);
     }
 
 
@@ -161,7 +162,7 @@ public List<Integer> listBoundedPrimes(int start, int finish){
 
    // METHOD USED IN ISPRIME TO DETERMINE LIST
 
-    public List<Integer> primes2(int n){
+    public static List<Integer> primes2(int n){
         List<Integer> listPrimes= new ArrayList<Integer>();
         if (n < 2) return listPrimes;
         else {
