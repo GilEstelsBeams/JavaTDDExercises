@@ -33,7 +33,9 @@ Part 3 is going to keep with the theme of maths from the previous set
 The probability that is will rain tomorrow is a function of whether or not it rained today.  Consider the following probability matrix:
 
 | | Rain tomorrow | Sunny tomorrow |
+
 | Rain today| 0.7 | 0.3 |
+
 | Sunny today | 0.4 | 0.6 |
 
 Represent this matrix as a Matrix class in Java.  What validations need to exist?
