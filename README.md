@@ -44,6 +44,8 @@ Create a Forecast class, with a method that takes a Matrix and Observation and c
 If you run your Forecast 1000 times with the same input, how many days does it rain on average? What are the minimum and maximum number of rainy days in a fortnight?
 What's the name of the process you just implemented?
 
+ANSWER: We need to validate that each line and column sum to one. Machine Learning
+
 
 For Part 4, we're going to design a system with lots of moving parts.
 Before decimalisation, British currency consisted of pounds (£), shillings (s) and pence (d).
@@ -53,3 +55,4 @@ There were 9 coins: farthing (worth 0.25d), half penny (worth 0.5d), penny (1d),
 Represent this currency in java, as individual units (e.g. Shilling vs Florin) and as a collection (e.g. in a CashFloat).  The collection should have a toString() method that represents the amount as described above.
 If something costs £3.5s.10d, how many different ways of representing this amount are there?  Which is the most efficient?
 Write a function that takes a currency amount (eg. a Price) and calculates the most efficient way to pay (or give change!) from a CashFloat
+
